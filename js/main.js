@@ -1,12 +1,5 @@
-// ==========================
-// INIT SIGMA
-// ==========================
 function initSigma(config) {
-    // Asegurar ruta relativa limpia en entornos de subcarpeta como GitHub Pages
     var data = config.data;
-    if (data === "data.json") {
-        data = "./data.json";
-    }
 
     var a = sigma.init(document.getElementById("sigma-canvas"))
         .drawingProperties(config.sigma.drawingProperties)
@@ -42,9 +35,15 @@ function initSigma(config) {
             nodeActive(nodeId);
         });
 
-        // REPARACIÓN PRODUCCIÓN: Redimensionar el lienzo antes de dibujar para heredar el layout real
-        a.resize();
+        // Forzar el dibujo con un desfase mínimo para dar tiempo al render en producción
         a.draw();
+        
+        setTimeout(function() {
+            if (typeof sigInst.resize === "function") {
+                sigInst.resize();
+            }
+            sigInst.draw();
+        }, 100);
         
         configSigmaElements(config);
         setupZoomButtons();
