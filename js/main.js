@@ -1,24 +1,20 @@
-// ==========================
-// INIT SIGMA
-// ==========================
-function initSigma(config) {
-    var data = config.data;
-
-    // REPARACIÓN DEFINITIVA: Forzar dimensiones físicas reales en el contenedor antes de iniciar Sigma
-    var canvasDiv = document.getElementById("sigma-canvas");
-    if (canvasDiv) {
-        var parentWidth = canvasDiv.parentElement ? canvasDiv.parentElement.clientWidth : window.innerWidth;
-        var parentHeight = canvasDiv.parentElement ? canvasDiv.parentElement.clientHeight : window.innerHeight;
-        
-        // Si el contenedor mide 0 o no ha cargado, asignamos el viewport completo de respaldo
-        if (!parentWidth || parentWidth === 0) parentWidth = window.innerWidth;
-        if (!parentHeight || parentHeight === 0) parentHeight = window.innerHeight;
-        
-        canvasDiv.style.width = parentWidth + "px";
-        canvasDiv.style.height = parentHeight + "px";
+// RASTREADOR 1: Ver si el archivo de configuración carga
+jQuery.getJSON(GetQueryStringParams("config","config.json"), function(data) {
+    console.log("LOG 1: config.json cargado con éxito", data);
+    config=data;
+    if (config.type!="network") {
+        alert("Invalid configuration settings.");
+        return;
     }
+    console.log("LOG 2: Llamando a setupGUI");
+    $(document).ready(setupGUI(config));
+});
 
-    var a = sigma.init(canvasDiv)
+function initSigma(config) {
+    var data=config.data;
+    console.log("LOG 3: Iniciando initSigma con el archivo de datos:", data);
+
+    var a = sigma.init(document.getElementById("sigma-canvas"))
         .drawingProperties(config.sigma.drawingProperties)
         .graphProperties(config.sigma.graphProperties)
         .mouseProperties(config.sigma.mouseProperties);
@@ -29,16 +25,21 @@ function initSigma(config) {
     a.detail = false;
 
     function dataReady() {
+        console.log("LOG 5: ¡dataReady se ejecutó! El archivo se procesó correctamente.");
+        
+        console.log("LOG 6: Iniciando bucle iterNodes. Total nodos esperados:", a._core.graph.nodes.length);
         a.iterNodes(function(n) {
             if (!n.attr) n.attr = {};
             n.attr.originalColor = n.color;
         });
 
+        console.log("LOG 7: Iniciando bucle iterEdges.");
         a.iterEdges(function(e) {
             if (!e.attr) e.attr = {};
             e.attr.originalColor = e.color;
         });
 
+        console.log("LOG 8: Configurando clusters.");
         a.clusters = {};
         a.iterNodes(function (b) {
             if (!a.clusters[b.color]) {
@@ -52,30 +53,16 @@ function initSigma(config) {
             nodeActive(nodeId);
         });
 
-        // Aseguramos que Sigma recalcule su layout interno con las medidas fijadas
-        if (typeof a.resize === "function") {
-            a.resize();
-        }
-
-        // Forzar centrado automático de la cámara para que el grafo aparezca en pantalla
-        if (a._core && a._core.camera) {
-            a.position(0, 0, 1);
-        }
-
+        console.log("LOG 9: Ejecutando draw() final.");
         a.draw();
-        
-        // Un segundo pase de renderizado preventivo por si el DOM tardó en estabilizarse
-        setTimeout(function() {
-            if (typeof sigInst.resize === "function") sigInst.resize();
-            sigInst.draw();
-        }, 150);
-        
         configSigmaElements(config);
         setupZoomButtons();
+        console.log("LOG 10: Fin de la inicialización completa.");
     }
 
-    if (data.indexOf("gexf") > 0 || data.indexOf("xml") > 0)
-        a.parseGexf(data, dataReady);
+    console.log("LOG 4: Intentando parsear el archivo de datos...");
+    if (data.indexOf("gexf")>0 || data.indexOf("xml")>0)
+        a.parseGexf(data,dataReady);
     else
-        a.parseJson(data, dataReady);
+        a.parseJson(data,dataReady);
 }
