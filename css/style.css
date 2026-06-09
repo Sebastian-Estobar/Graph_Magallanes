@@ -657,3 +657,57 @@ display: none;
 #ecosystem-stats-panel .fill-vinculador    { background-color: rgb(177, 171, 2); }   /* Amarillo/Oliva */
 #ecosystem-stats-panel .fill-promotor      { background-color: rgb(242, 142, 43); }  /* Naranja */
 #ecosystem-stats-panel .fill-articulador   { background-color: rgb(225, 87, 89); }   /* Rojo/Coral */
+
+/* ==========================================================================
+   ESTILOS EXCLUSIVOS PARA VERSIONES MÓVILES (PANTALLAS CHICAS)
+   ========================================================================== */
+@media screen and (max-width: 768px) {
+  
+  /* 1. Hacemos que el panel de control no ocupe toda la pantalla y flote */
+  #mainpanel {
+    width: 90% !important;
+    max-width: 340px;
+    height: auto !important;
+    max-height: 40vh; /* Limita el alto al 40% de la pantalla del celular */
+    overflow-y: auto;
+    position: absolute;
+    top: 10px;
+    left: 5%;
+    z-index: 1000;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+
+  /* 2. Achicamos el título para que no use 4 líneas en el celular */
+  #title {
+    font-size: 16px !important;
+    margin-bottom: 8px !important;
+  }
+  #titletext {
+    font-size: 11px !important;
+  }
+
+  /* 3. Reducimos el tamaño del logo de CORFO para que no tape la red */
+  div[style*="position: absolute"][style*="right: 20px"] {
+    top: 10px !important;
+    right: 10px !important;
+  }
+  div[style*="position: absolute"][style*="right: 20px"] img {
+    width: 110px !important; /* Baja de 220px a 110px en celulares */
+  }
+
+  /* 4. El panel de estadísticas inferior lo colapsamos o achicamos */
+  #ecosystem-stats-panel {
+    width: 90% !important;
+    left: 5% !important;
+    bottom: 10px !important;
+    padding: 8px !important;
+    font-size: 11px !important;
+  }
+  #ecosystem-stats-panel h3 {
+    margin-top: 0;
+    font-size: 12px;
+  }
+  .stats-table {
+    display: none; /* Opcional: oculta la tabla en móviles para liberar espacio */
+  }
+}
