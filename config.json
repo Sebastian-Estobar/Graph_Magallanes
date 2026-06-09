@@ -1,0 +1,68 @@
+{
+  "type": "network",
+  "version": "1.0",
+  "data": "data.json",
+
+  "logo": {
+    "file": "",
+    "link": "",
+    "text": ""
+  },
+
+  "text": {
+    "more": "Este grafo muestra conexiones entre actores clave del ecosistema de Magallanes. El tamaño de los nodos indica su nivel de conexión y los colores representan distintos tipos de actores.",
+    "intro": "Explora cómo se conectan las instituciones en el ecosistema regional.",
+    "title": "Red de actores en Magallanes"
+  },
+
+  "legend": {
+    "edgeLabel": "Relaciones",
+    "colorLabel": "Tipo de actor",
+    "nodeLabel": "Instituciones"
+  },
+
+  "features": {
+    "search": true,
+    "groupSelectorAttribute": false,
+    "hoverBehavior": "default"
+  },
+
+  "informationPanel": {
+    "groupByEdgeDirection": false,
+    "imageAttribute": false
+  },
+
+  "sigma": {
+
+    "drawingProperties": {
+
+      "defaultEdgeType": "curve",
+
+      "defaultLabelColor": "#222",
+      "defaultLabelSize": 15,
+      "labelThreshold": 2,
+
+      "defaultLabelBGColor": "#ffffff",
+      "defaultHoverLabelBGColor": "#4fc3f7",
+      "defaultLabelHoverColor": "#000",
+
+      "fontStyle": "bold",
+      "hoverFontStyle": "bold",
+      "activeFontStyle": "bold"
+    },
+
+    "graphProperties": {
+
+      "maxEdgeSize": 1.8,
+      "minEdgeSize": 0.6,
+
+      "minNodeSize": 4,
+      "maxNodeSize": 40
+    },
+
+    "mouseProperties": {
+      "maxRatio": 8,
+      "minRatio": 0.4
+    }
+  }
+}
