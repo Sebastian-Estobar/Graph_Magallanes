@@ -33,33 +33,24 @@
   },
 
   "sigma": {
-
     "drawingProperties": {
-
-      "defaultEdgeType": "curve",
-
+      "defaultEdgeType": "line",
       "defaultLabelColor": "#222",
-      "defaultLabelSize": 15,
-      "labelThreshold": 2,
-
+      "defaultLabelSize": 14,
+      "labelThreshold": 0,
       "defaultLabelBGColor": "#ffffff",
       "defaultHoverLabelBGColor": "#4fc3f7",
       "defaultLabelHoverColor": "#000",
-
       "fontStyle": "bold",
       "hoverFontStyle": "bold",
       "activeFontStyle": "bold"
     },
-
     "graphProperties": {
-
       "maxEdgeSize": 1.8,
       "minEdgeSize": 0.6,
-
-      "minNodeSize": 4,
-      "maxNodeSize": 40
+      "minNodeSize": 6,
+      "maxNodeSize": 42
     },
-
     "mouseProperties": {
       "maxRatio": 8,
       "minRatio": 0.4
