@@ -34,9 +34,9 @@
 
   "sigma": {
     "drawingProperties": {
-      "defaultEdgeType": "line",
+      "defaultEdgeType": "curve",
       "defaultLabelColor": "#222",
-      "defaultLabelSize": 14,
+      "defaultLabelSize": 15,
       "labelThreshold": 0,
       "defaultLabelBGColor": "#ffffff",
       "defaultHoverLabelBGColor": "#4fc3f7",
@@ -48,8 +48,8 @@
     "graphProperties": {
       "maxEdgeSize": 1.8,
       "minEdgeSize": 0.6,
-      "minNodeSize": 6,
-      "maxNodeSize": 42
+      "minNodeSize": 4,
+      "maxNodeSize": 40
     },
     "mouseProperties": {
       "maxRatio": 8,
