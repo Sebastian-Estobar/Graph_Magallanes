@@ -12,13 +12,13 @@
   "text": {
     "more": "Este grafo muestra conexiones entre actores clave del ecosistema de Magallanes. El tamaño de los nodos indica su nivel de conexión y los colores representan distintos tipos de actores.",
     "intro": "Explora cómo se conectan las instituciones en el ecosistema regional.",
-    "title": "Red de actores en Magallanes"
+    "title": "Red de Actores del Ecosistema de Emprendimiento e Innovación - Región de Magallanes"
   },
 
   "legend": {
-    "edgeLabel": "Relaciones",
-    "colorLabel": "Tipo de actor",
-    "nodeLabel": "Instituciones"
+    "edgeLabel": "",
+    "colorLabel": "",
+    "nodeLabel": ""
   },
 
   "features": {
